@@ -761,8 +761,8 @@ mode: restart
 max_exceeded: silent
 
 variables:
-pm25_sensor: !input pm25_sensor
-pm25_threshold: !input pm25_threshold
+  pm25_sensor: !input pm25_sensor
+  pm25_threshold: !input pm25_threshold
   trigger: !input trigger
   bathroom_humidity_sensor: !input bathroom_humidity_sensor
   include_manual_trigger: !input include_manual_trigger
