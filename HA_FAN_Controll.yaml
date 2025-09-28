@@ -1,10 +1,9 @@
-
 blueprint:
-  name: Bathroom Humidity Exhaust Fan with 2.5 PM2.5 Sensor
+  name: Bathroom Humidity Exhaust Fan
   description: >
-    # 🚿 Bathroom Humidity Exhaust Fan with 2.5 PM2.5 Sensor
+    # 🚿 Bathroom Humidity Exhaust Fan
     
-    **Version: 1.0**
+    **Version: 2.6**
     
     
     Step into the future of freshness - customize it your way and experience the convenience of automated humidity control! 🌿🚿
@@ -55,7 +54,6 @@ blueprint:
     Required = *
   domain: automation
   input:
-
   pm25_sensor:
     name: PM2.5 Sensor (Optioneel)
     description: Selecteer je PM2.5-sensor om ventilatie te activeren bij slechte luchtkwaliteit.
@@ -65,7 +63,6 @@ blueprint:
         filter:
           domain:
             - sensor
-
   pm25_threshold:
     name: PM2.5 Drempelwaarde
     description: Boven deze waarde wordt de ventilatie geactiveerd.
@@ -82,27 +79,6 @@ blueprint:
       description: ⚠️ To use an auto trigger, you need to configure a humidity derivative sensor. *
       collapsed: true
       input:
-
-  pm25_sensor:
-    name: PM2.5 Sensor (Optioneel)
-    description: Selecteer je PM2.5-sensor om ventilatie te activeren bij slechte luchtkwaliteit.
-    default: []
-    selector:
-      entity:
-        filter:
-          domain:
-            - sensor
-
-  pm25_threshold:
-    name: PM2.5 Drempelwaarde
-    description: Boven deze waarde wordt de ventilatie geactiveerd.
-    default: 35
-    selector:
-      number:
-        min: 0
-        max: 200
-        step: 1
-        unit_of_measurement: µg/m³
         trigger:
           name: Trigger - Humidity Derivative Sensor *
           description: Select your humidity derivative sensor.
@@ -133,27 +109,6 @@ blueprint:
       icon: mdi:gesture-tap-button
       collapsed: true
       input:
-
-  pm25_sensor:
-    name: PM2.5 Sensor (Optioneel)
-    description: Selecteer je PM2.5-sensor om ventilatie te activeren bij slechte luchtkwaliteit.
-    default: []
-    selector:
-      entity:
-        filter:
-          domain:
-            - sensor
-
-  pm25_threshold:
-    name: PM2.5 Drempelwaarde
-    description: Boven deze waarde wordt de ventilatie geactiveerd.
-    default: 35
-    selector:
-      number:
-        min: 0
-        max: 200
-        step: 1
-        unit_of_measurement: µg/m³
         include_manual_trigger:
           name: Use The Manual Trigger Option (Optional)
           description: This feature allows you to manually trigger the automation.
@@ -229,27 +184,6 @@ blueprint:
       icon: mdi:fan
       collapsed: true
       input:
-
-  pm25_sensor:
-    name: PM2.5 Sensor (Optioneel)
-    description: Selecteer je PM2.5-sensor om ventilatie te activeren bij slechte luchtkwaliteit.
-    default: []
-    selector:
-      entity:
-        filter:
-          domain:
-            - sensor
-
-  pm25_threshold:
-    name: PM2.5 Drempelwaarde
-    description: Boven deze waarde wordt de ventilatie geactiveerd.
-    default: 35
-    selector:
-      number:
-        min: 0
-        max: 200
-        step: 1
-        unit_of_measurement: µg/m³
         fan_switch:
           name: Fan Switch *
           description: Select the fan you would like to turn ON. Fans, switches, scripts & input boolean are allowed.
@@ -316,27 +250,6 @@ blueprint:
       icon: mdi:weather-sunny
       collapsed: true
       input:
-
-  pm25_sensor:
-    name: PM2.5 Sensor (Optioneel)
-    description: Selecteer je PM2.5-sensor om ventilatie te activeren bij slechte luchtkwaliteit.
-    default: []
-    selector:
-      entity:
-        filter:
-          domain:
-            - sensor
-
-  pm25_threshold:
-    name: PM2.5 Drempelwaarde
-    description: Boven deze waarde wordt de ventilatie geactiveerd.
-    default: 35
-    selector:
-      number:
-        min: 0
-        max: 200
-        step: 1
-        unit_of_measurement: µg/m³
         rising_humidity:
           name: Rising Humidity Derivative
           description: Specify the percentage increase that the derivative sensor must exceed to indicate a shower has started, thus activating the fan.
@@ -440,27 +353,6 @@ blueprint:
       icon: mdi:snowflake
       collapsed: true
       input:
-
-  pm25_sensor:
-    name: PM2.5 Sensor (Optioneel)
-    description: Selecteer je PM2.5-sensor om ventilatie te activeren bij slechte luchtkwaliteit.
-    default: []
-    selector:
-      entity:
-        filter:
-          domain:
-            - sensor
-
-  pm25_threshold:
-    name: PM2.5 Drempelwaarde
-    description: Boven deze waarde wordt de ventilatie geactiveerd.
-    default: 35
-    selector:
-      number:
-        min: 0
-        max: 200
-        step: 1
-        unit_of_measurement: µg/m³
         include_winter_mode:
           name: Use The Winter Mode Option (Optional)
           description: Enabling this option will automatically apply a 'Winter Mode' to the months you select below, allowing you to apply different settings for the colder months of the year.
@@ -608,27 +500,6 @@ blueprint:
       icon: mdi:lightbulb-on-outline
       collapsed: true
       input:
-
-  pm25_sensor:
-    name: PM2.5 Sensor (Optioneel)
-    description: Selecteer je PM2.5-sensor om ventilatie te activeren bij slechte luchtkwaliteit.
-    default: []
-    selector:
-      entity:
-        filter:
-          domain:
-            - sensor
-
-  pm25_threshold:
-    name: PM2.5 Drempelwaarde
-    description: Boven deze waarde wordt de ventilatie geactiveerd.
-    default: 35
-    selector:
-      number:
-        min: 0
-        max: 200
-        step: 1
-        unit_of_measurement: µg/m³
         include_lights:
           name: Use The Lights Options (Optional)
           description: This option is handy for activating various lights while showering, especially if you have LED lights in a shower niche.
@@ -729,27 +600,6 @@ blueprint:
       icon: mdi:toggle-switch-outline
       collapsed: true
       input:
-
-  pm25_sensor:
-    name: PM2.5 Sensor (Optioneel)
-    description: Selecteer je PM2.5-sensor om ventilatie te activeren bij slechte luchtkwaliteit.
-    default: []
-    selector:
-      entity:
-        filter:
-          domain:
-            - sensor
-
-  pm25_threshold:
-    name: PM2.5 Drempelwaarde
-    description: Boven deze waarde wordt de ventilatie geactiveerd.
-    default: 35
-    selector:
-      number:
-        min: 0
-        max: 200
-        step: 1
-        unit_of_measurement: µg/m³
         include_manual_fan_switch:
           name: Use The Manual Fan Switch Option (Optional)
           description: This feature allows you to manually switch the fan ON and OFF while still enabling the automation to take control when needed.
@@ -799,27 +649,6 @@ blueprint:
       icon: mdi:link-variant
       collapsed: true
       input:
-
-  pm25_sensor:
-    name: PM2.5 Sensor (Optioneel)
-    description: Selecteer je PM2.5-sensor om ventilatie te activeren bij slechte luchtkwaliteit.
-    default: []
-    selector:
-      entity:
-        filter:
-          domain:
-            - sensor
-
-  pm25_threshold:
-    name: PM2.5 Drempelwaarde
-    description: Boven deze waarde wordt de ventilatie geactiveerd.
-    default: 35
-    selector:
-      number:
-        min: 0
-        max: 200
-        step: 1
-        unit_of_measurement: µg/m³
         include_automation_link:
           name: Use The Automation Link Option (Optional)
           description: This feature simplifies the process of automatically disabling your other automations by providing an automation linking mechanism.
@@ -864,27 +693,6 @@ blueprint:
       icon: mdi:cog-pause-outline
       collapsed: true
       input:
-
-  pm25_sensor:
-    name: PM2.5 Sensor (Optioneel)
-    description: Selecteer je PM2.5-sensor om ventilatie te activeren bij slechte luchtkwaliteit.
-    default: []
-    selector:
-      entity:
-        filter:
-          domain:
-            - sensor
-
-  pm25_threshold:
-    name: PM2.5 Drempelwaarde
-    description: Boven deze waarde wordt de ventilatie geactiveerd.
-    default: 35
-    selector:
-      number:
-        min: 0
-        max: 200
-        step: 1
-        unit_of_measurement: µg/m³
         include_bypass:
           name: Use The Trigger Sensor Bypass Option (Optional)
           description: All the bypass options will allow manual control of your fan.
@@ -952,8 +760,6 @@ mode: restart
 max_exceeded: silent
 
 variables:
-  pm25_sensor: !input pm25_sensor
-  pm25_threshold: !input pm25_threshold
   trigger: !input trigger
   bathroom_humidity_sensor: !input bathroom_humidity_sensor
   include_manual_trigger: !input include_manual_trigger
@@ -1015,13 +821,12 @@ variables:
       []
     {% endif %}
 triggers:
-
-  - trigger:
-      platform: numeric_state
-      entity_id: !input pm25_sensor
-      above: !input pm25_threshold
-    id: "pm25_trigger"
-  - trigger: numeric_state
+- trigger:
+    platform: numeric_state
+    entity_id: !input pm25_sensor
+    above: !input pm25_threshold
+  id: "pm25_trigger"
+- trigger: numeric_state
     id: "t0"
     entity_id: !input trigger
     above: !input winter_rising_humidity
@@ -1260,15 +1065,16 @@ condition:
         id: 't5'
 
 action:
-
-  - alias: "PM2.5 trigger - ventilatie aan"
-    conditions:
-      - condition: trigger
-        id: "pm25_trigger"
-    sequence:
-      - service: homeassistant.turn_on
-        target: !input fan_switch
-  - choose:
+- alias: "PM2.5 trigger - ventilatie aan"
+  conditions:
+    - condition: trigger
+      id: "pm25_trigger"
+    - condition: template
+      value_template: "{{ pm25_sensor != [] }}"
+  sequence:
+    - service: homeassistant.turn_on
+      target: !input fan_switch
+    - choose:
       - alias: "For winter mode when enabled and within the set winter months"
         conditions:
           - condition: or
