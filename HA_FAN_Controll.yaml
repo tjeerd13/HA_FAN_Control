@@ -1,3 +1,4 @@
+
 blueprint:
   name: Bathroom Humidity Exhaust Fan
   description: >
@@ -760,6 +761,8 @@ mode: restart
 max_exceeded: silent
 
 variables:
+pm25_sensor: !input pm25_sensor
+pm25_threshold: !input pm25_threshold
   trigger: !input trigger
   bathroom_humidity_sensor: !input bathroom_humidity_sensor
   include_manual_trigger: !input include_manual_trigger
@@ -813,7 +816,7 @@ variables:
 
 # Split domains for light switch targets
 
-  light_entities: >-
+light_entities: >-
     {% set a =  light_switch and light_switch.entity_id %}
     {% if a %}
       {{ expand(a) | selectattr('domain', 'eq', 'light') | map(attribute='entity_id') | list }}
@@ -831,40 +834,40 @@ triggers:
     entity_id: !input trigger
     above: !input winter_rising_humidity
     below: "100"
-  - trigger: numeric_state
+- trigger: numeric_state
     id: "t1"
     entity_id: !input bathroom_humidity_sensor
     above: !input winter_max_humidity
     below: "100"
-  - trigger: homeassistant
+- trigger: homeassistant
     id: "t2"
     event: start
-  - trigger: numeric_state
+- trigger: numeric_state
     id: "t3"
     entity_id: !input trigger
     above: !input rising_humidity
     below: "100"
-  - trigger: numeric_state
+- trigger: numeric_state
     id: "t4"
     entity_id: !input bathroom_humidity_sensor
     above: !input max_humidity
     below: "100"
-  - trigger: state
+- trigger: state
     id: "t5"
     entity_id: !input by_pass
     from: "off"
     to: "on"
-  - trigger: state
+- trigger: state
     id: "t6"
     entity_id: !input by_pass
     from: "on"
     to: "off"
-  - trigger: state
+- trigger: state
     id: "t7"
     entity_id: !input manual_fan_switch
     from: "off"
     to: "on"
-  - trigger: state
+- trigger: state
     id: "t8"
     entity_id: !input manual_trigger
     from: "off"
@@ -1069,8 +1072,6 @@ action:
   conditions:
     - condition: trigger
       id: "pm25_trigger"
-    - condition: template
-      value_template: "{{ pm25_sensor != [] }}"
   sequence:
     - service: homeassistant.turn_on
       target: !input fan_switch
