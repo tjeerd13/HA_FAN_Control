@@ -863,101 +863,49 @@ triggers:
     from: "on"
     to: "off"
 - trigger: state
-    id: "t7"
     entity_id: !input manual_fan_switch
     from: "off"
     to: "on"
 - trigger: state
-    id: "t8"
-    entity_id: !input manual_trigger
-    from: "off"
-    to: "on"
 
-# All Conditions
-condition:
-
-# Trigger conditions
-  - condition: or
-    conditions:
-      - condition: and # trigger for winter mode
-        conditions:
-          -  "{{ include_winter_mode == 'winter_mode_enabled' }}"
-          - condition: template
-            value_template: "{{ (now().month | string in month_winter_mode ) }}"
-          - condition: trigger
-            id: 't0'
-      - condition: and # trigger for winter mode and max humidity
-        conditions:
-          - "{{ (include_winter_mode == 'winter_mode_enabled') and (winter_include_max_humidity == 'maximum_humidity_enabled') }}"
-          - condition: template
-            value_template: "{{ (now().month | string in month_winter_mode ) }}"
-          - condition: trigger
-            id: 't1'
-      - condition: and # trigger by HA restart - fan or low speed fan is on
-        conditions:
-          - "{{ (expand(fan_switch.entity_id) | selectattr('state', '==', 'on') | list | count > 0) or ((include_fan_speed == 'fan_low_speed_enabled') and (expand(fan_speed_low) | selectattr('state', '==', 'on') | list | count > 0)) or ((winter_include_fan_speed == 'fan_low_speed_enabled') and (expand(fan_speed_low) | selectattr('state', '==', 'on') | list | count > 0)) or ((include_automation_link == 'enable_automation_link') and (expand(automation_link) | selectattr('state', '==', 'on') | list | count > 0)) }}"
-          - condition: trigger
-            id: 't2'
-      - condition: and # trigger by HA restart - above rising humidity - winter mode disabled
-        conditions:
-          - condition: trigger
-            id: 
-              - 't2'
-          - "{{ 'winter_mode_disabled' in include_winter_mode }}"
-          - condition: numeric_state
-            entity_id: !input trigger
-            above: !input rising_humidity
-            below: "100"
-      - condition: and # trigger by HA restart - above rising humidity - winter mode enabled - not in winter month
-        conditions:
-          - condition: trigger
-            id: 
               - 't2'
           - "{{ 'winter_mode_enabled' in include_winter_mode }}"
           - condition: template
             value_template: "{{ (now().month | string not in month_winter_mode ) }}"
           - condition: numeric_state
-            entity_id: !input trigger
             above: !input rising_humidity
             below: "100"
       - condition: and # trigger by HA restart - above rising humidity - winter mode enabled - in winter month 
         conditions:
           - condition: trigger
-            id: 
               - 't2'
           - "{{ 'winter_mode_enabled' in include_winter_mode }}"
           - condition: template
-            value_template: "{{ (now().month | string in month_winter_mode ) }}"
           - condition: numeric_state
             entity_id: !input trigger
             above: !input winter_rising_humidity
             below: "100"
       - condition: and # trigger by HA restart - maximum humidity enabled & above maximum humidity - winter mode disabled
-        conditions:
           - condition: trigger
             id: 
               - 't2'
           - "{{ 'winter_mode_disabled' in include_winter_mode }}"
           - "{{ 'maximum_humidity_enabled' in include_max_humidity }}"
-          - condition: numeric_state
             entity_id: !input bathroom_humidity_sensor
             above: !input max_humidity
             below: "100"
       - condition: and # trigger by HA restart - maximum humidity enabled & above maximum humidity - winter mode enabled - not in winter month
         conditions:
-          - condition: trigger
             id: 
               - 't2'
           - "{{ 'winter_mode_enabled' in include_winter_mode }}"
           - "{{ 'maximum_humidity_enabled' in include_max_humidity }}"
           - condition: template
-            value_template: "{{ (now().month | string not in month_winter_mode ) }}"
           - condition: numeric_state
             entity_id: !input bathroom_humidity_sensor
             above: !input max_humidity
             below: "100"
       - condition: and # trigger by HA restart - maximum humidity enabled & above maximum humidity - winter mode enabled - in winter month 
-        conditions:
           - condition: trigger
             id: 
               - 't2'
